@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/AdventOfCode/static/css/main.01cd3a00.chunk.css",
+    "main.js": "/AdventOfCode/static/js/main.d262dcb0.chunk.js",
+    "main.js.map": "/AdventOfCode/static/js/main.d262dcb0.chunk.js.map",
+    "runtime~main.js": "/AdventOfCode/static/js/runtime~main.730019bc.js",
+    "runtime~main.js.map": "/AdventOfCode/static/js/runtime~main.730019bc.js.map",
+    "static/js/2.819e1d8b.chunk.js": "/AdventOfCode/static/js/2.819e1d8b.chunk.js",
+    "static/js/2.819e1d8b.chunk.js.map": "/AdventOfCode/static/js/2.819e1d8b.chunk.js.map",
+    "index.html": "/AdventOfCode/index.html",
+    "precache-manifest.63680dc0e312ab16e2872606c8cf291e.js": "/AdventOfCode/precache-manifest.63680dc0e312ab16e2872606c8cf291e.js",
+    "service-worker.js": "/AdventOfCode/service-worker.js",
+    "static/css/main.01cd3a00.chunk.css.map": "/AdventOfCode/static/css/main.01cd3a00.chunk.css.map"
+  }
+}
