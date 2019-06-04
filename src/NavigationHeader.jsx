@@ -6,6 +6,7 @@ export const NavigationHeader = () => {
     <div className="header">
       <NavLink exact to="">Home</NavLink>
       <NavLink exact to="/day1">1</NavLink>
+      <NavLink exact to="/day2">2</NavLink>
     </div>
   )
 };
