@@ -62,6 +62,10 @@ export class Day2 extends React.Component {
             })
           }
         });
+      });
+
+      doubleArray.forEach((array, i) => {
+
       })
     }
   }
