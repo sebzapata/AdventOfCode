@@ -7,7 +7,8 @@ export class Day2 extends React.Component {
     this.state = {
       twoCount: 0,
       threeCount: 0,
-      fileLoaded: false
+      fileLoaded: false,
+      sequence: ""
     }
 
   }
@@ -16,7 +17,7 @@ export class Day2 extends React.Component {
     return (
       <div>
         <input type="file" multiple={false} onChange={(e) => this.handleChange(e.target.files[0])}/>
-        {this.state.fileLoaded && !this.state.twoCount ? <p>Loading</p> : this.renderResults()}
+        {this.state.fileLoaded && !this.state.sequence ? <p>Loading</p> : this.renderResults()}
       </div>
     )
   }
@@ -27,6 +28,7 @@ export class Day2 extends React.Component {
         {this.state.twoCount ? <p>{`Two count: ${this.state.twoCount}`}</p> : null}
         {this.state.threeCount ? <p>{`Three count: ${this.state.threeCount}`}</p> : null}
         {this.state.twoCount && this.state.threeCount ? <p>{`Checksum: ${this.state.threeCount * this.state.twoCount}`}</p> : null}
+        {this.state.sequence ? <p>{`Sequence: ${this.state.sequence}`}</p> : null}
       </div>
     )
   };
@@ -39,12 +41,11 @@ export class Day2 extends React.Component {
 
     reader.onload = () => {
       const rawText = reader.result;
-      const stringArray = rawText.split("\n");
-      const newArray = stringArray.filter(x => x !== "");
+      const stringArray = rawText.split("\n").filter(x => x !== "");
 
-      const doubleArray = newArray.map(x => x.split(""));
+      const lettersArray = stringArray.map(x => x.split(""));
 
-      doubleArray.forEach(array => {
+      lettersArray.forEach(array => {
         let has3 = false;
         let has2 = false;
         array.forEach(letter => {
@@ -64,9 +65,32 @@ export class Day2 extends React.Component {
         });
       });
 
-      doubleArray.forEach((array, i) => {
+      let firstSequence = [];
+      let secondSequence = [];
 
-      })
+      lettersArray.forEach(i => {
+        lettersArray.forEach(j => {
+          let wrongCount = 0;
+          i.forEach((k, y) => {
+            if (k !== j[y]) {
+              wrongCount++
+            }
+          });
+          if (wrongCount === 1) {
+            firstSequence = i;
+            secondSequence = j;
+          }
+        });
+      });
+
+      let sequence = [];
+      firstSequence.forEach((x, i) => {
+        if (x === secondSequence[i]) {
+          sequence.push(x);
+        }
+      });
+
+      this.setState({sequence: sequence.join('')});
     }
   }
 }
