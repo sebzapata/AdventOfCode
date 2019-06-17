@@ -17,6 +17,7 @@ export const NavigationHeader = () => {
       <button onClick={() => window.location.pathname = ""}>Home</button>
       <button onClick={() => window.location.pathname = "/day1"}>1</button>
       <button onClick={() => window.location.pathname = "/day2"}>2</button>
+      <button onClick={() => window.location.pathname = "/day3"}>3</button>
     </div>
   )
 };
