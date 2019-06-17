@@ -2,6 +2,7 @@ import React from "react";
 import {Day1} from "./challenges/day1";
 import {Day2} from "./challenges/day2";
 import {store} from "./redux";
+import {Day3} from "./challenges/day3";
 
 export const DisplayPanel = () => {
 
@@ -34,6 +35,12 @@ export const DisplayPanel = () => {
     case "/day2": {
       return (
         renderOutput(<Day2/>)
+      )
+    }
+
+    case "/day3": {
+      return (
+        renderOutput(<Day3/>)
       )
     }
 
