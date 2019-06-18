@@ -11,6 +11,7 @@ export class Day3 extends React.Component {
       fabricGrid: [],
       maxWidth: 0,
       maxHeight: 0,
+      specialClaim: 0
     }
   }
 
@@ -23,7 +24,7 @@ export class Day3 extends React.Component {
       <div>
         <input type="file" multiple={false} onChange={(e) => this.handleChange(e.target.files[0])} />
         {this.state.fileLoaded && !this.state.overlapCount ? <p>Loading</p> : this.renderResults()}
-        {this.state.maxWidth && this.state.maxHeight && this.renderCanvas()}
+        {this.state.maxWidth && this.state.maxHeight ? this.renderCanvas() : null}
       </div>
     )
   }
@@ -65,6 +66,7 @@ export class Day3 extends React.Component {
     return (
       <div>
         {<p>{`Overlap count: ${this.state.overlapCount}`}</p>}
+        {<p>{`Special claim: ${this.state.specialClaim}`}</p>}
       </div>
     )
   };
@@ -133,11 +135,27 @@ export class Day3 extends React.Component {
         })
       });
 
+      let specialClaim= 0;
+      detailsArray.forEach(x => {
+        let noOverlap = true;
+        for (let i = x.distanceFromLeft; i < x.distanceFromLeft + x.width; i++) {
+          for (let j = x.distanceFromTop; j < x.distanceFromTop + x.height; j++) {
+            if (fabricGrid[j][i] > 1) {
+              noOverlap = false;
+            }
+          }
+        }
+        if (noOverlap === true) {
+          specialClaim = x.id
+        }
+      });
+
       this.setState({
         maxWidth: maxWidth,
         maxHeight: maxHeight,
         fabricGrid: fabricGrid,
-        overlapCount: overlapCount
+        overlapCount: overlapCount,
+        specialClaim: specialClaim
       });
     }
   }
