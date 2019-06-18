@@ -8,8 +8,14 @@ export class Day3 extends React.Component {
     this.state = {
       overlapCount: 0,
       fileLoaded: false,
-      gridCellsArray: []
+      fabricGrid: [],
+      maxWidth: 0,
+      maxHeight: 0,
     }
+  }
+
+  componentDidUpdate() {
+    this.fillCanvas()
   }
 
   render() {
@@ -17,14 +23,48 @@ export class Day3 extends React.Component {
       <div>
         <input type="file" multiple={false} onChange={(e) => this.handleChange(e.target.files[0])} />
         {this.state.fileLoaded && !this.state.overlapCount ? <p>Loading</p> : this.renderResults()}
+        {this.state.maxWidth && this.state.maxHeight && this.renderCanvas()}
       </div>
     )
   }
 
+  renderCanvas = () => {
+    return (
+        <canvas id="myCanvas" width={this.state.maxWidth} height={this.state.maxHeight} style={{border: "1px black solid", height: 500, width: 500}} />
+      )
+  };
+
+  fillCanvas = () => {
+    const canvas = document.getElementById("myCanvas");
+    if (!canvas) return null;
+
+    const ctx = canvas.getContext("2d");
+
+    for (let i = 0; i < this.state.maxWidth; i++) {
+      for (let j = 0; j < this.state.maxHeight; j++) {
+        const value = this.state.fabricGrid[i][j];
+
+        if (value > 1) {
+          ctx.fillStyle = "#FF0000";
+        }
+        if (value === 1) {
+          ctx.fillStyle = "#00FF00"
+        }
+        if (value === 0) {
+          ctx.fillStyle = "#FFFFFF";
+        }
+
+        ctx.fillRect(i, j, 1, 1)
+      }
+    }
+  };
+
   renderResults = () => {
+    if (!this.state.overlapCount) return null;
+
     return (
       <div>
-        {this.state.overlapCount ? <p>{`Overlap count: ${this.state.overlapCount}`}</p> : null}
+        {<p>{`Overlap count: ${this.state.overlapCount}`}</p>}
       </div>
     )
   };
@@ -40,7 +80,7 @@ export class Day3 extends React.Component {
       const stringArray = rawText.split("\n").filter(x => x !== "");
 
       const detailsArray = stringArray.map(x => {
-        const re = /\d+/g
+        const re = /\d+/g;
         const array = x.match(re).map(x => parseInt(x, 10))
 
         return {
@@ -51,9 +91,9 @@ export class Day3 extends React.Component {
           height: array[4]
         }
       });
+
       let maxWidth = 0;
       let maxHeight = 0;
-
 
       detailsArray.forEach(x => {
         if (x.distanceFromLeft + x.width > maxWidth) {
@@ -85,22 +125,18 @@ export class Day3 extends React.Component {
       });
 
       let overlapCount = 0;
-      let gridCellsArray = [];
       fabricGrid.forEach(rows => {
         rows.forEach(cell => {
-          if (cell > 0) {
-            gridCellsArray.push(<div className="gridCell gridCell--taken" />)
-          }
           if (cell > 1) {
-            gridCellsArray.push(<div className="gridCell gridCell--overlap" />)
             overlapCount++;
           }
-          gridCellsArray.push(<div className="gridCell gridCell--single" />)
         })
       });
 
       this.setState({
-        gridCellsArray: gridCellsArray,
+        maxWidth: maxWidth,
+        maxHeight: maxHeight,
+        fabricGrid: fabricGrid,
         overlapCount: overlapCount
       });
     }
