@@ -1,22 +1,25 @@
 import * as React from "react";
+import {FileUpload} from "../components/fileUpload";
 
 export class Day2 extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      fileLoaded: false,
+      fileName: "",
       twoCount: 0,
       threeCount: 0,
-      fileLoaded: false,
-      sequence: ""
-    }
+      sequence: "",
+    };
 
+    this.handleChange = this.handleChange.bind(this);
   }
 
   render() {
     return (
       <div>
-        <input type="file" multiple={false} onChange={(e) => this.handleChange(e.target.files[0])}/>
+        <FileUpload fileName={this.state.fileName} onFileLoad={this.handleChange}/>
         {this.state.fileLoaded && !this.state.sequence ? <p>Loading</p> : this.renderResults()}
       </div>
     )
@@ -34,7 +37,10 @@ export class Day2 extends React.Component {
   };
 
   handleChange(file) {
-    this.setState({fileLoaded: true});
+    this.setState({
+      fileLoaded: true,
+      fileName: file.name
+    });
 
     const reader = new FileReader();
     reader.readAsText(file);
