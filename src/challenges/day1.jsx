@@ -1,13 +1,15 @@
 import * as React from "react";
+import {FileUpload} from "../components/fileUpload"
 
 export class Day1 extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      fileLoaded: false,
+      fileName: "",
       part1Result: null,
       part2Result: null,
-      fileLoaded: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -17,23 +19,28 @@ export class Day1 extends React.Component {
 
     return (
       <div>
-        <input type="file" multiple={false} onChange={(e) => this.handleChange(e.target.files[0])}/>
-        {
-          !this.state.part1Result && this.state.fileLoaded
-          ? <p>Loading</p>
-          : (
-              <div>
-                {this.state.part1Result && <p>{`Part 1: ${this.state.part1Result}`}</p>}
-                {this.state.part2Result && <p>{`Part 2: ${this.state.part2Result}`}</p>}
-              </div>
-            )
-        }
+        <FileUpload fileName={this.state.fileName} onFileLoad={this.handleChange} />
+        {this.state.fileLoaded && !this.state.part1Result ? <p>Loading</p> : this.renderResults()}
       </div>
     )
   }
 
+  renderResults = () => {
+    return (
+      <div>
+        {this.state.part1Result ? <p>{`Part 1: ${this.state.part1Result}`}</p> : null}
+        {this.state.part2Result ? <p>{`Part 2: ${this.state.part2Result}`}</p> : null}
+      </div>
+    )
+  };
+
   handleChange(file) {
-    this.setState({fileLoaded: true});
+    console.log("goes in func", file)
+    if (!file) return null;
+    this.setState({
+      fileLoaded: true,
+      fileName: file.name
+    });
 
     const reader = new FileReader();
     reader.readAsText(file);
@@ -66,6 +73,9 @@ export class Day1 extends React.Component {
         part2Result: doubleArray[0]
       });
     };
+
+    console.log("state", this.state)
+
 
   }
 }

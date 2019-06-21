@@ -1,9 +1,9 @@
 import React from "react";
-import {Day1} from "./challenges/day1";
-import {Day2} from "./challenges/day2";
-import {store} from "./redux";
-import {Day3} from "./challenges/day3";
-import {Canvas} from "./challenges/canvas";
+import {Day1} from "../challenges/day1";
+import {Day2} from "../challenges/day2";
+import {store} from "../redux";
+import {Day3} from "../challenges/day3";
+import {Canvas} from "../challenges/canvas";
 
 export const DisplayPanel = () => {
 

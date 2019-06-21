@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavigationHeader }from './NavigationHeader'
-import { DisplayPanel } from './DisplayPanel'
+import { NavigationHeader }from './components/navigationHeader'
+import { DisplayPanel } from './components/displayPanel'
 import './App.css';
 
 export const App = () => {

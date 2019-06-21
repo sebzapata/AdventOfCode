@@ -1,18 +1,21 @@
 import * as React from "react";
-import './day3.css';
+import {FileUpload} from "../components/fileUpload";
 
 export class Day3 extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      overlapCount: 0,
       fileLoaded: false,
+      fileName: "",
+      overlapCount: 0,
       fabricGrid: [],
       maxWidth: 0,
       maxHeight: 0,
       specialClaim: 0
-    }
+    };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidUpdate() {
@@ -22,7 +25,7 @@ export class Day3 extends React.Component {
   render() {
     return (
       <div>
-        <input type="file" multiple={false} onChange={(e) => this.handleChange(e.target.files[0])} />
+        <FileUpload fileName={this.state.fileName} onFileLoad={this.handleChange}/>
         {this.state.fileLoaded && !this.state.overlapCount ? <p>Loading</p> : this.renderResults()}
         {this.state.maxWidth && this.state.maxHeight ? this.renderCanvas() : null}
       </div>
@@ -72,7 +75,10 @@ export class Day3 extends React.Component {
   };
 
   handleChange(file) {
-    this.setState({fileLoaded: true});
+    this.setState({
+      fileLoaded: true,
+      fileName: file.name
+    });
 
     const reader = new FileReader();
     reader.readAsText(file);

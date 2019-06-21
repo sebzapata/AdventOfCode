@@ -1,3 +1,24 @@
+@font-face {
+  font-family: "Candy Cane";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Candy Cane"), url("fonts/Candy.ttf")format("truetype");
+}
+
+@font-face {
+  font-family: "One Starry Night";
+  font-style: normal;
+  font-weight: 400;
+  src: local("One Starry Night"), url("fonts/One Starry Night Font.ttf")format("truetype");
+}
+
+@font-face {
+  font-family: "Simplifica";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Simplifica"), url("fonts/SIMPLIFICA Typeface.ttf")format("truetype");
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -12,14 +33,74 @@ code {
     monospace;
 }
 
-.header {
+.navigationHeader {
   width: 100%;
-  background-color: grey;
-  height: 100px;
+  height: 10vh;
+  background-color: #1F262A;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Simplifica", sans-serif;
+  font-size: 2em;
 }
 
 .dynamic {
   width: 100%;
-  height: 100vh;
-  background-color: orange;
+  height: 90vh;
+  background-color: #F7F6F7;
+}
+
+.navigationHeader__link {
+  cursor: pointer;
+  color: #5B676D;
+  margin: 0;
+}
+
+.navigationHeader__link--current,
+.navigationHeader__link:hover {
+  color: #AAA9AD;
+}
+
+.fileUpload {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+  cursor: pointer;
+}
+
+.fileUpload__icon,
+.fileUpload__text {
+  font-size: 1.5em;
+}
+
+.fileUpload__icon {
+  padding-right: 10px;
+}
+
+.fileUpload__hidden {
+  display: none;
+}
+
+.gridContainer {
+  width: 1000px;
+  height: 1000px;
+  border: 5px solid black;
+}
+
+.gridCell {
+  width: 1px;
+  height: 1px;
+}
+
+.gridCell--empty {
+  background: white;
+}
+
+.gridCell--taken {
+  background: blue;
+}
+
+.gridCell--overlap {
+  background: red;
 }
