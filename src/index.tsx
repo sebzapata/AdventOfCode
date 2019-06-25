@@ -17,4 +17,4 @@ store.subscribe(() => {
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-store.dispatch({});
+store.dispatch({} as any);

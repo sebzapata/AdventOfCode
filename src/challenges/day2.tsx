@@ -1,8 +1,18 @@
 import * as React from "react";
 import {FileUpload} from "../components/fileUpload";
 
-export class Day2 extends React.Component {
-  constructor(props) {
+interface Props {}
+
+interface State {
+  fileLoaded: boolean;
+  fileName: string;
+  twoCount: number;
+  threeCount: number;
+  sequence: string;
+}
+
+export class Day2 extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -36,7 +46,7 @@ export class Day2 extends React.Component {
     )
   };
 
-  handleChange(file) {
+  handleChange(file: File) {
     this.setState({
       fileLoaded: true,
       fileName: file.name
@@ -47,7 +57,9 @@ export class Day2 extends React.Component {
 
     reader.onload = () => {
       const rawText = reader.result;
-      const stringArray = rawText.split("\n").filter(x => x !== "");
+      if (!rawText) return null;
+
+      const stringArray = (rawText as string).split("\n").filter(x => x !== "");
 
       const lettersArray = stringArray.map(x => x.split(""));
 
@@ -71,8 +83,8 @@ export class Day2 extends React.Component {
         });
       });
 
-      let firstSequence = [];
-      let secondSequence = [];
+      let firstSequence: string[] = [];
+      let secondSequence: string[] = [];
 
       lettersArray.forEach(i => {
         lettersArray.forEach(j => {
@@ -89,7 +101,7 @@ export class Day2 extends React.Component {
         });
       });
 
-      let sequence = [];
+      let sequence: string[] = [];
       firstSequence.forEach((x, i) => {
         if (x === secondSequence[i]) {
           sequence.push(x);

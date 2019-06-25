@@ -12,7 +12,7 @@ export const DisplayPanel = () => {
     return state.component;
   };
 
-  const renderOutput = (component) => {
+  const renderOutput = (component: React.ReactNode) => {
     return (
       <div className="dynamic">
         {component}
@@ -23,7 +23,7 @@ export const DisplayPanel = () => {
   switch (window.location.pathname) {
     case "/": {
       return (
-        renderOutput()
+        renderOutput(null)
       )
     }
 
@@ -52,7 +52,7 @@ export const DisplayPanel = () => {
 
     default:
       return (
-        renderOutput()
+        renderOutput(null)
       )
   }
 };

@@ -1,7 +1,14 @@
 import * as React from "react";
 
-export class Canvas extends React.Component {
-  constructor(props) {
+interface Props {}
+
+interface State {
+  width: number;
+  height: number;
+}
+
+export class Canvas extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -21,8 +28,13 @@ export class Canvas extends React.Component {
     )
   }
   drawStuff = () => {
-    const canvas = document.getElementById("myCanvas");
+    const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
+    if (!canvas) return null;
+
     const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+
+
 
     for (let j = 0; j < this.state.width; j+= 10) {
       for (let i = 0; i < this.state.width; i+= 10) {
@@ -31,13 +43,15 @@ export class Canvas extends React.Component {
       }
     }
     ctx.stroke();
-  }
+  };
 
   resizeCanvas = () => {
     const canvas = document.getElementById("myCanvas");
 
-    const divWidth = document.getElementById("canvasDiv").clientWidth;
-    const divHeight = document.getElementById("canvasDiv").clientHeight;
+    if (!canvas) return null;
+
+    const divWidth = canvas.clientWidth;
+    const divHeight = canvas.clientHeight;
 
     // canvas.style.width = `${divWidth}`
     // canvas.style.height = `${divHeight}`
