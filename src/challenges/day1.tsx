@@ -1,5 +1,6 @@
 import * as React from "react";
 import {FileUpload} from "../components/fileUpload"
+import { ContainerBase } from "./containerBase";
 
 interface Props {}
 
@@ -10,7 +11,7 @@ interface State {
   part2Result: number | null;
 }
 
-export class Day1 extends React.Component<Props, State> {
+export class Day1 extends ContainerBase<Props, State> {
   constructor(props: Props) {
     super(props);
 
