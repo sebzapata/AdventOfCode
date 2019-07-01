@@ -1,10 +1,10 @@
 import React from "react";
-import {store} from "../redux";
 import classNames from "classnames";
+import {store} from "../redux";
 
 export const NavigationHeader = () => {
 
-  const changeComponent = (component) => {
+  const changeComponent = (component: string) => {
     store.dispatch({
       type: "CHANGE_COMPONENT",
       payload: {
@@ -15,7 +15,7 @@ export const NavigationHeader = () => {
 
   const currentPath = window.location.pathname;
 
-  const createLink = (pathname, text, currentPath) => {
+  const createLink = (pathname: string, text: string, currentPath: string) => {
     return (
       <h1 className={classNames("navigationHeader__link", {"navigationHeader__link--current": currentPath === pathname})} onClick={() => window.location.pathname = pathname}>{text}</h1>
     )

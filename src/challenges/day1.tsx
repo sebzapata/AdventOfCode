@@ -1,8 +1,18 @@
 import * as React from "react";
 import {FileUpload} from "../components/fileUpload"
+import { ContainerBase } from "./containerBase";
 
-export class Day1 extends React.Component {
-  constructor(props) {
+interface Props {}
+
+interface State {
+  fileLoaded: boolean;
+  fileName: string;
+  part1Result: number | null;
+  part2Result: number | null;
+}
+
+export class Day1 extends ContainerBase<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -34,8 +44,7 @@ export class Day1 extends React.Component {
     )
   };
 
-  handleChange(file) {
-    console.log("goes in func", file)
+  handleChange(file: File) {
     if (!file) return null;
     this.setState({
       fileLoaded: true,
@@ -47,14 +56,15 @@ export class Day1 extends React.Component {
 
     reader.onload = () => {
       const rawText = reader.result;
-      const stringArray = rawText.split("\n");
+      if (!rawText) return null;
+      const stringArray: string[] = (rawText as string).split("\n");
       const numbersArray = stringArray.filter(x => x !== "").map(x => parseInt(x, 10));
 
       const part1Result = numbersArray.reduce((a, b) => a + b, 0);
 
       let currentFrequency = 0;
-      let resultArray = [];
-      let doubleArray = [];
+      let resultArray: number[] = [];
+      let doubleArray: number[] = [];
 
       do {
         numbersArray.forEach(x => {
@@ -73,9 +83,5 @@ export class Day1 extends React.Component {
         part2Result: doubleArray[0]
       });
     };
-
-    console.log("state", this.state)
-
-
   }
 }

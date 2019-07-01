@@ -1,8 +1,21 @@
 import * as React from "react";
 import {FileUpload} from "../components/fileUpload";
+import { ContainerBase } from "./containerBase";
 
-export class Day3 extends React.Component {
-  constructor(props) {
+interface Props {}
+
+interface State {
+  fileLoaded: boolean;
+  fileName: string;
+  overlapCount: number;
+  fabricGrid: number[][];
+  maxWidth: number;
+  maxHeight: number;
+  specialClaim: number;
+}
+
+export class Day3 extends ContainerBase<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -39,10 +52,11 @@ export class Day3 extends React.Component {
   };
 
   fillCanvas = () => {
-    const canvas = document.getElementById("myCanvas");
+    const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
     if (!canvas) return null;
 
     const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
 
     for (let i = 0; i < this.state.maxWidth; i++) {
       for (let j = 0; j < this.state.maxHeight; j++) {
@@ -74,7 +88,7 @@ export class Day3 extends React.Component {
     )
   };
 
-  handleChange(file) {
+  handleChange(file: File) {
     this.setState({
       fileLoaded: true,
       fileName: file.name
@@ -85,11 +99,17 @@ export class Day3 extends React.Component {
 
     reader.onload = () => {
       const rawText = reader.result;
-      const stringArray = rawText.split("\n").filter(x => x !== "");
+      if (!rawText) return null;
+
+      const stringArray = (rawText as string).split("\n").filter(x => x !== "");
 
       const detailsArray = stringArray.map(x => {
         const re = /\d+/g;
-        const array = x.match(re).map(x => parseInt(x, 10))
+
+        const match = x.match(re);
+
+        if (!match) return null;
+        const array = match.map(x => parseInt(x, 10));
 
         return {
           id: array[0],
@@ -104,6 +124,8 @@ export class Day3 extends React.Component {
       let maxHeight = 0;
 
       detailsArray.forEach(x => {
+        if (!x) return null;
+
         if (x.distanceFromLeft + x.width > maxWidth) {
           maxWidth = x.distanceFromLeft + x.width
         }
@@ -113,7 +135,8 @@ export class Day3 extends React.Component {
         }
       });
 
-      let fabricGrid = [[]];
+      let fabricGrid: number[][] = [[]];
+
       for (let i = 0; i < maxHeight; i++) {
         fabricGrid[i] = [];
       }
@@ -125,6 +148,8 @@ export class Day3 extends React.Component {
       });
 
       detailsArray.forEach(x => {
+        if (!x) return null;
+
         for (let j = 0; j < x.height; j++) {
           for (let i = 0; i < x.width; i++) {
             fabricGrid[x.distanceFromTop + j][x.distanceFromLeft + i]++
@@ -143,6 +168,7 @@ export class Day3 extends React.Component {
 
       let specialClaim= 0;
       detailsArray.forEach(x => {
+        if (!x) return null;
         let noOverlap = true;
         for (let i = x.distanceFromLeft; i < x.distanceFromLeft + x.width; i++) {
           for (let j = x.distanceFromTop; j < x.distanceFromTop + x.height; j++) {
