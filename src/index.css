@@ -104,3 +104,28 @@ code {
 .gridCell--overlap {
   background: red;
 }
+
+.displaySection {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-evenly;
+}
+
+.displaySection--canvas {
+  border: 1px solid #000000
+}
+
+.displaySection--inputSection {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.displaySection--inputSection--inputBlock {
+}
+
+.displaySection--inputSection--inputBlock--inputBox {
+  width: 50px;
+}
