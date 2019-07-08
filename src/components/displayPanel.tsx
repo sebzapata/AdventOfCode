@@ -14,7 +14,7 @@ export const DisplayPanel = () => {
 
   const renderOutput = (component: React.ReactNode) => {
     return (
-      <div className="dynamic">
+      <div id="dynamic" className="dynamic">
         {component}
       </div>
     )
