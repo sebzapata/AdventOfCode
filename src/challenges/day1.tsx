@@ -1,5 +1,6 @@
 import * as React from "react";
 import {FileUpload} from "../components/fileUpload"
+import { ResultsPanel } from "../components/resultsPanel";
 import { ContainerBase } from "./containerBase";
 
 interface Props {}
@@ -37,10 +38,10 @@ export class Day1 extends ContainerBase<Props, State> {
 
   renderResults = () => {
     return (
-      <div>
+      <ResultsPanel>
         {this.state.part1Result ? <p>{`Part 1: ${this.state.part1Result}`}</p> : null}
         {this.state.part2Result ? <p>{`Part 2: ${this.state.part2Result}`}</p> : null}
-      </div>
+      </ResultsPanel>
     )
   };
 

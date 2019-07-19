@@ -1,10 +1,14 @@
 import React from "react";
 
-export const ResultsPanel = () => {
+interface Props {
+  children: React.ReactNode
+}
+
+export const ResultsPanel = (props: Props) => {
 
   return (
-    <div>
-
+    <div className="resultsPanel">
+      {props.children}
     </div>
   )
 };
