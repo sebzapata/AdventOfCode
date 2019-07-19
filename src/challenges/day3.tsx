@@ -1,5 +1,6 @@
 import * as React from "react";
 import {FileUpload} from "../components/fileUpload";
+import { ResultsPanel } from "../components/resultsPanel";
 import { ContainerBase } from "./containerBase";
 
 interface Props {}
@@ -81,10 +82,14 @@ export class Day3 extends ContainerBase<Props, State> {
     if (!this.state.overlapCount) return null;
 
     return (
-      <div>
-        {<p>{`Overlap count: ${this.state.overlapCount}`}</p>}
-        {<p>{`Special claim: ${this.state.specialClaim}`}</p>}
-      </div>
+      <ResultsPanel>
+        <div>
+          {<p>{`Overlap count: ${this.state.overlapCount}`}</p>}
+        </div>
+        <div>
+          {<p>{`Special claim: ${this.state.specialClaim}`}</p>}
+        </div>
+      </ResultsPanel>
     )
   };
 

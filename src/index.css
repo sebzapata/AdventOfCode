@@ -129,3 +129,11 @@ code {
 .displaySection--inputSection--inputBlock--inputBox {
   width: 50px;
 }
+
+.resultsPanel {
+  display: flex;
+  flex-direction: row;
+  width: 33%;
+  justify-content: space-evenly;
+  margin: auto;
+}
