@@ -32,6 +32,7 @@ export class Day1 extends ContainerBase<Props, State> {
       <div>
         <FileUpload fileName={this.state.fileName} onFileLoad={this.handleChange} />
         {this.state.fileLoaded && !this.state.part1Result ? <p>Loading</p> : this.renderResults()}
+        <canvas id="myCanvas" width={1000} height={1000} className="displaySection--canvas" />
       </div>
     )
   }
@@ -61,7 +62,10 @@ export class Day1 extends ContainerBase<Props, State> {
       const stringArray: string[] = (rawText as string).split("\n");
       const numbersArray = stringArray.filter(x => x !== "").map(x => parseInt(x, 10));
 
-      const part1Result = numbersArray.reduce((a, b) => a + b, 0);
+      const part1Result = numbersArray.reduce((a, b) => {
+        this.
+        return a + b
+      }, 0);
 
       let currentFrequency = 0;
       let resultArray: number[] = [];
@@ -85,4 +89,19 @@ export class Day1 extends ContainerBase<Props, State> {
       });
     };
   }
+
+  drawCurrentNumber = (number: number) => {
+    const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
+    if (!canvas) return null;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = "250px Arial";
+
+    ctx.fillText(number.toString(), 0, canvas.height/2);
+  }
+
 }
