@@ -29,6 +29,7 @@ export const NavigationHeader = () => {
       {createLink("/day3", "3", currentPath)}
       {createLink("/day4", "4", currentPath)}
       {createLink("/canvas", "Canvas", currentPath)}
+      {createLink("/canvasText", "Canvas Text", currentPath)}
     </div>
   )
 

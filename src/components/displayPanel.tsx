@@ -1,4 +1,6 @@
 import React from "react";
+import { BouncingBall } from "../challenges/canvasAnimation";
+import { CanvasText } from "../challenges/canvasText";
 import {Day1} from "../challenges/day1";
 import {Day2} from "../challenges/day2";
 import {Day4} from "../challenges/day4";
@@ -55,6 +57,12 @@ export const DisplayPanel = () => {
     case "/canvas": {
       return (
         renderOutput(<Canvas/>)
+      )
+    }
+
+    case "/canvasText": {
+      return (
+        renderOutput(<CanvasText/>)
       )
     }
 
