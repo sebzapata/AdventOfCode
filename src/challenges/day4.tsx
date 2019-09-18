@@ -35,19 +35,19 @@ export class Day4 extends ContainerBase<Props, State> {
       mostFrequentMinute: 0
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleFileLoad = this.handleFileLoad.bind(this);
   }
 
   render() {
     return (
       <div>
-        <FileUpload onFileLoad={this.handleChange} fileName={this.state.fileName}/>
+        <FileUpload onFileLoad={this.handleFileLoad} fileName={this.state.fileName}/>
         {this.state.fileLoaded && !this.state.sleepiestGuardId ? <p>Loading</p> : this.renderResults()}
       </div>
     )
   }
 
-  handleChange(file: File) {
+  handleFileLoad(file: File) {
     this.setState({
       fileLoaded: true,
       fileName: file.name

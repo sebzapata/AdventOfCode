@@ -23,13 +23,13 @@ export class Day4 extends ContainerBase<Props, State> {
   render() {
     return (
       <div>
-        <FileUpload onFileLoad={this.handleChange} fileName={this.state.fileName}/>
+        <FileUpload onFileLoad={this.handleFileLoad} fileName={this.state.fileName}/>
         {this.state.fileLoaded ? <p>Loading</p> : this.renderResults()}
       </div>
     );
   }
 
-  handleChange(file: File) {
+  handleFileLoad(file: File) {
     this.setState({
       fileLoaded: true,
       fileName: file.name

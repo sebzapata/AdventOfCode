@@ -23,14 +23,14 @@ export class Day1 extends ContainerBase<Props, State> {
       part2Result: null,
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleFileLoad = this.handleFileLoad.bind(this);
   }
 
   render() {
 
     return (
       <div>
-        <FileUpload fileName={this.state.fileName} onFileLoad={this.handleChange} />
+        <FileUpload fileName={this.state.fileName} onFileLoad={this.handleFileLoad} />
         {this.state.fileLoaded && !this.state.part1Result ? <p>Loading</p> : this.renderResults()}
       </div>
     )
@@ -45,7 +45,7 @@ export class Day1 extends ContainerBase<Props, State> {
     )
   };
 
-  handleChange(file: File) {
+  handleFileLoad(file: File) {
     if (!file) return null;
     this.setState({
       fileLoaded: true,

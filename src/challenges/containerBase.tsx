@@ -9,5 +9,5 @@ export abstract class ContainerBase<TProps = {}, TState = {}> extends React.Comp
 
   protected abstract renderResults(): React.ReactNode;
 
-  protected abstract handleChange(file: File): void;
+  protected abstract handleFileLoad(file: File): void;
 }

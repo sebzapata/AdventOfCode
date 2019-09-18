@@ -114,7 +114,8 @@ code {
 }
 
 .displaySection--canvas {
-  border: 1px solid #000000
+  border: 1px solid #000000;
+  margin: 10px 0;
 }
 
 .displaySection--inputSection {
@@ -132,8 +133,8 @@ code {
 
 .resultsPanel {
   display: flex;
-  flex-direction: row;
-  width: 33%;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-evenly;
   margin: auto;
 }

@@ -1,7 +1,7 @@
 import React from "react";
-import { BouncingBall } from "../challenges/canvasAnimation";
-import { CanvasText } from "../challenges/canvasText";
+import {CanvasText} from "../challenges/canvasText";
 import {Day1} from "../challenges/day1";
+import {Day1Animated} from "../challenges/day1Animated";
 import {Day2} from "../challenges/day2";
 import {Day4} from "../challenges/day4";
 import {store} from "../redux";
@@ -33,6 +33,12 @@ export const DisplayPanel = () => {
     case "/day1": {
       return (
         renderOutput(<Day1/>)
+      )
+    }
+
+    case "/day1Animated": {
+      return (
+        renderOutput(<Day1Animated/>)
       )
     }
 

@@ -11,7 +11,7 @@ export const FileUpload = (props: Props) => {
   return (
     <label className="fileUpload">
       <FontAwesomeIcon className="fileUpload__icon" icon={faDesktop} />
-      <input className="fileUpload__hidden" type="file" multiple={false} onChange={(e) => e.target.files && props.onFileLoad(e.target.files[0])}/>
+      <input id="fileInput" className="fileUpload__hidden" type="file" multiple={false} onChange={(e) => e.target.files && props.onFileLoad(e.target.files[0])}/>
       <p className="fileUpload__text">{props.fileName ? `You chose: ${props.fileName}` : "Please choose a file to upload"}</p>
     </label>
   )

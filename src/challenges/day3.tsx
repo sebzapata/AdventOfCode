@@ -29,7 +29,7 @@ export class Day3 extends ContainerBase<Props, State> {
       specialClaim: 0
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleFileLoad = this.handleFileLoad.bind(this);
   }
 
   componentDidUpdate() {
@@ -39,7 +39,7 @@ export class Day3 extends ContainerBase<Props, State> {
   render() {
     return (
       <div>
-        <FileUpload fileName={this.state.fileName} onFileLoad={this.handleChange}/>
+        <FileUpload fileName={this.state.fileName} onFileLoad={this.handleFileLoad}/>
         {this.state.fileLoaded && !this.state.overlapCount ? <p>Loading</p> : this.renderResults()}
         {this.state.maxWidth && this.state.maxHeight ? this.renderCanvas() : null}
       </div>
@@ -93,7 +93,7 @@ export class Day3 extends ContainerBase<Props, State> {
     )
   };
 
-  handleChange(file: File) {
+  handleFileLoad(file: File) {
     this.setState({
       fileLoaded: true,
       fileName: file.name
